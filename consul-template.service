@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec consul-template \
+     -consul-addr=consul:8500 \
+     -template "/etc/consul-templates/app-upstream.conf:/etc/nginx/upstreams/app-upstream.conf:sv hup nginx" \
+     -template "/etc/consul-templates/blog-upstream.conf:/etc/nginx/upstreams/blog-upstream.conf:sv hup nginx" \
+     -template "/etc/consul-templates/backend-upstream.conf:/etc/nginx/upstreams/backend-upstream.conf:sv hup nginx" \
+     -template "/etc/consul-templates/frontend-upstream.conf:/etc/nginx/upstreams/frontend-upstream.conf:sv hup nginx"
